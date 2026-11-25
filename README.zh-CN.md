@@ -56,7 +56,7 @@ python -m http.server 5173
 ## 目录结构
 
 ```text
-index.html     语义化结构：<main>、<section>、<h1>/<h2>、<button>、带 label 的文件输入
+index.html     语义化结构：<main>、<section>、<h1>/<h2>、<button>、带 aria-label 且移出 Tab 顺序的文件输入
 styles.css     :root 里集中放设计令牌，类名接近 BEM，响应式规则在文件末尾
 app.js         约 190 行：文件选择、拖放、文件名格式化、步骤条状态机
 assets/
@@ -76,8 +76,8 @@ assets/
 
 ## 无障碍
 
-- 拖拽区是 `<button>`，并用 `aria-describedby` 指向提示文字，键盘可触发、会被读屏念成按钮。
-- 文件输入视觉上隐藏但带 label，通过拖拽区聚焦；它是文件选择的唯一数据源。
+- 拖拽区是 `<button>`，并用 `aria-describedby` 指向提示文字，键盘可触发、会被读屏念成按钮；它是选择文件的唯一 Tab 停靠点。
+- 文件输入视觉上隐藏，但带 `aria-label="Resume file"`，并移出 Tab 顺序（`tabindex="-1"`），键盘用户不会停在一个看不见的 1px 控件上；它仍是文件选择的唯一数据源，读屏浏览模式也仍能访问。
 - 状态更新用 `role="status"` + `aria-live="polite"`。
 - 插画有描述性 `alt`，纯装饰图标标 `aria-hidden`。
 

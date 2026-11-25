@@ -61,7 +61,7 @@ snapping at a single breakpoint.
 ## Structure
 
 ```text
-index.html     semantic markup: <main>, <section>, <h1>/<h2>, <button>, labelled file input
+index.html     semantic markup: <main>, <section>, <h1>/<h2>, <button>, aria-labelled file input (tabindex="-1")
 styles.css     design tokens in :root, BEM-ish class names, responsive rules at the bottom
 app.js         ~190 lines: file dialog, drag & drop, name formatting, stepper state machine
 assets/
@@ -91,9 +91,12 @@ assets/
 ## Accessibility notes
 
 - The drop zone is a `<button>` with `aria-describedby` pointing at the hint,
-  so it is keyboard-activatable and announced as a button.
-- The file input is visually hidden but labelled and focusable through the
-  drop zone; it is the single source of truth for the selection.
+  so it is keyboard-activatable and announced as a button; it is the only Tab
+  stop for picking a file.
+- The file input is visually hidden but named (`aria-label="Resume file"`) and
+  removed from the Tab order (`tabindex="-1"`), so keyboard users never land on
+  an invisible 1 px control; it stays the single source of truth for the
+  selection and is still exposed to assistive tech.
 - Status updates use `role="status"` + `aria-live="polite"`.
 - The illustration has a descriptive `alt`; decorative icons are `aria-hidden`.
 

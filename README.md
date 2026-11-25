@@ -1,6 +1,9 @@
 # Resume upload step — Figma restoration (frontend task)
 
+**Languages:** English (this file) · [中文说明](README.zh-CN.md)
+
 Repository: <https://github.com/lsp013/d5data-frontend-resume-upload>
+Live preview: <https://lsp013.github.io/d5data-frontend-resume-upload/> (after Pages is enabled once)
 
 A pixel-oriented rebuild of the Figma design
 [`前端工程师（实习）`, frame `0:1`](https://www.figma.com/design/D0jjN7Twkq0DGm3ZJvQabz/?node-id=0-1)

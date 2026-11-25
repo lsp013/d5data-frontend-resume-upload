@@ -1,6 +1,8 @@
 # 简历上传页 · Figma 还原（前端题）
 
 > English version: [README.md](README.md) · 仓库：<https://github.com/lsp013/d5data-frontend-resume-upload>
+>
+> 在线预览：<https://lsp013.github.io/d5data-frontend-resume-upload/>（GitHub Actions 部署，push 到 `main` 自动发布）
 
 用**纯 HTML + CSS + 原生 JavaScript**（零构建、零依赖）还原 Figma 设计稿
 [`前端工程师（实习）`，frame `0:1`](https://www.figma.com/design/D0jjN7Twkq0DGm3ZJvQabz/?node-id=0-1)

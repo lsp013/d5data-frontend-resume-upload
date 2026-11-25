@@ -5,3 +5,7 @@ Thumbs.db
 desktop.ini
 .DS_Store
 *.log
+
+# user scratch files (screenshots / icons dropped in the folder by hand)
+截图.png
+*.ico

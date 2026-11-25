@@ -1,5 +1,7 @@
 # Resume upload step — Figma restoration (frontend task)
 
+Repository: <https://github.com/lsp013/d5data-frontend-resume-upload>
+
 A pixel-oriented rebuild of the Figma design
 [`前端工程师（实习）`, frame `0:1`](https://www.figma.com/design/D0jjN7Twkq0DGm3ZJvQabz/?node-id=0-1)
 using plain HTML + CSS + vanilla JavaScript (no build step, no dependencies).

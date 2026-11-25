@@ -15,6 +15,9 @@
   --blue-soft-hover: #649df7;
   --blue-soft-active: #5590ef;
   --blue-track: #c9d8ff;
+  --step-idle-bg: #e8edf5;
+  --step-idle-ink: #98a2b3;
+  --step-idle-line: #dce4f2;
   --field-bg: #f3f8ff;
   --field-bg-hover: #eaf2ff;
   --field-bg-active: #e2edff;
@@ -109,25 +112,6 @@ body {
   height: auto;
   object-fit: contain;
   object-position: left bottom;
-}
-
-.dots {
-  display: flex;
-  gap: 8px;
-  margin-top: 14px;
-  padding-left: 2px;
-}
-
-.dots__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #c7ccd8;
-  transition: background-color 0.2s ease;
-}
-
-.dots__dot.is-active {
-  background: var(--blue);
 }
 
 /* --------------------------------------------------------------------------
@@ -350,31 +334,59 @@ body {
   height: clamp(22px, 2.6vw, 26px);
   flex: none;
   border-radius: 50%;
-  background: var(--blue);
-  color: #fff;
+  background: var(--step-idle-bg);
+  color: var(--step-idle-ink);
   font-size: clamp(10px, 0.85vw, 12px);
   font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.stepper__step svg {
+.stepper__step.is-current,
+.stepper__step.is-done {
+  background: var(--blue);
+  color: #fff;
+}
+
+.stepper__mark {
+  display: none;
   width: 60%;
   height: 60%;
+}
+
+.stepper__step.is-done .stepper__mark {
+  display: block;
+}
+
+.stepper__step.is-done .stepper__num {
+  display: none;
+}
+
+.stepper__num {
+  line-height: 1;
 }
 
 .stepper__rail,
 .stepper__tail {
   height: 2px;
-  background: var(--blue-track);
+  transition: background-color 0.2s ease;
 }
 
 .stepper__rail {
   flex: 0 1 clamp(44px, 4.4vw, 70px);
   width: clamp(44px, 4.4vw, 70px);
+  background: var(--step-idle-line);
+}
+
+.stepper__rail.is-done {
+  background: var(--blue-track);
 }
 
 .stepper__tail {
   width: clamp(28px, 3vw, 44px);
   flex: none;
+  background: var(--step-idle-line);
 }
 
 .stepper__tail--end {

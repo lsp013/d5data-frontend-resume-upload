@@ -33,12 +33,6 @@
               decoding="async"
             />
           </figure>
-
-          <div class="dots" role="img" aria-label="Illustration 1 of 3">
-            <span class="dots__dot is-active"></span>
-            <span class="dots__dot"></span>
-            <span class="dots__dot"></span>
-          </div>
         </section>
 
         <section class="upload-card" aria-labelledby="upload-title">
@@ -97,10 +91,11 @@
 
           <p class="actions__note" id="actions-note" role="status" aria-live="polite"></p>
 
-          <div class="stepper" role="group" aria-label="Progress: step 3 of 3">
+          <div class="stepper" id="stepper" role="group" aria-label="Progress: step 1 of 3">
             <span class="stepper__tail" aria-hidden="true"></span>
-            <span class="stepper__step is-done">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+
+            <span class="stepper__step" data-step="1">
+              <svg class="stepper__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
                   d="m6.5 12.5 3.6 3.6 7.4-7.6"
                   stroke="currentColor"
@@ -109,10 +104,13 @@
                   stroke-linejoin="round"
                 />
               </svg>
+              <span class="stepper__num">1</span>
             </span>
+
             <span class="stepper__rail" aria-hidden="true"></span>
-            <span class="stepper__step is-done">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+
+            <span class="stepper__step" data-step="2">
+              <svg class="stepper__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
                   d="m6.5 12.5 3.6 3.6 7.4-7.6"
                   stroke="currentColor"
@@ -121,9 +119,24 @@
                   stroke-linejoin="round"
                 />
               </svg>
+              <span class="stepper__num">2</span>
             </span>
+
             <span class="stepper__rail" aria-hidden="true"></span>
-            <span class="stepper__step is-current" aria-current="step">3</span>
+
+            <span class="stepper__step" data-step="3">
+              <svg class="stepper__mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="m6.5 12.5 3.6 3.6 7.4-7.6"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span class="stepper__num">3</span>
+            </span>
+
             <span class="stepper__tail stepper__tail--end" aria-hidden="true"></span>
           </div>
         </section>

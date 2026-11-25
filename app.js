@@ -15,12 +15,52 @@
   var finishBtn = document.getElementById("finish");
   var lastStepBtn = document.getElementById("last-step");
   var note = document.getElementById("actions-note");
+  var stepperEl = document.getElementById("stepper");
+  var steps = Array.prototype.slice.call(
+    document.querySelectorAll(".stepper__step")
+  );
+  var rails = Array.prototype.slice.call(
+    document.querySelectorAll(".stepper__rail")
+  );
 
   if (!dropzone || !input) {
     return;
   }
 
   var selectedFile = null;
+  var step = 1; /* 1 = start, 2 = file chosen, 3 = finished */
+
+  /* --- progress stepper -------------------------------------------------- */
+  function renderStep() {
+    steps.forEach(function (el, index) {
+      var number = index + 1;
+      var isCurrent = number === step;
+      el.classList.toggle("is-done", number < step);
+      el.classList.toggle("is-current", isCurrent);
+      if (isCurrent) {
+        el.setAttribute("aria-current", "step");
+      } else {
+        el.removeAttribute("aria-current");
+      }
+    });
+
+    /* rails[index] is the segment between step index+1 and index+2 */
+    rails.forEach(function (el, index) {
+      el.classList.toggle("is-done", step > index + 1);
+    });
+
+    if (stepperEl) {
+      stepperEl.setAttribute("aria-label", "Progress: step " + step + " of 3");
+    }
+    if (lastStepBtn) {
+      lastStepBtn.disabled = step === 1;
+    }
+  }
+
+  function goToStep(next) {
+    step = Math.min(3, Math.max(1, next));
+    renderStep();
+  }
 
   function setNote(message, tone) {
     note.textContent = message || "";
@@ -33,6 +73,7 @@
     nameEl.textContent = file.name + " · " + formatSize(file.size);
     status.classList.add("is-visible");
     setNote("", null);
+    goToStep(2);
   }
 
   function clearFile() {
@@ -41,6 +82,7 @@
     nameEl.textContent = "";
     status.classList.remove("is-visible");
     setNote("", null);
+    goToStep(1);
   }
 
   function formatSize(bytes) {
@@ -114,16 +156,33 @@
       dropzone.focus();
       return;
     }
+    if (step === 3) {
+      setNote(
+        "Already finished — " + selectedFile.name + " is ready for parsing.",
+        "success"
+      );
+      return;
+    }
     setNote("Uploading " + selectedFile.name + " …", null);
     finishBtn.disabled = true;
     window.setTimeout(function () {
       finishBtn.disabled = false;
+      goToStep(3);
       setNote("Done — " + selectedFile.name + " is ready for parsing.", "success");
     }, 700);
   });
 
   lastStepBtn.addEventListener("click", function () {
-    clearFile();
-    setNote("Back to the previous step. No file was uploaded.", null);
+    if (step === 3) {
+      goToStep(2);
+      setNote("Back to the upload step. Choose Finish again when you are ready.", null);
+      return;
+    }
+    if (step === 2) {
+      clearFile();
+      setNote("Back to the first step. The file selection was cleared.", null);
+    }
   });
+
+  renderStep();
 })();

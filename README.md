@@ -30,7 +30,7 @@ Verified in Chrome 130+ / Edge 130+ at 1440×900, 1024×768, 414×896.
 | Layout | Two columns: copy + illustration on the left, upload card on the right; collapses to one column below 960 px. |
 | Drop zone | 2 px dashed border `#6E9BFF`, tinted fill, rounded 16 px, centred cloud-upload icon and two-line hint. |
 | Buttons | `Last step` (`#75ACFF`) and `Finish` (`#1B5AFF`) with hover / active / focus-visible / disabled states. |
-| Stepper | Three nodes: two completed checks + current step `3`, on a light blue rail. |
+| Stepper | Three nodes driven by a real state machine: `1` current / `2` `3` grey on load → `✓` `2` `3` once a file is picked → `✓` `✓` `3` after `Finish`; `Last step` walks the marks back. Idle nodes are grey (`#E8EDF5`), the active one is filled blue, and connector rails turn blue behind completed steps. |
 | File picking | Click opens the native file dialog; drag & drop over the zone also works and highlights the zone while a file is hovering. |
 | File feedback | Selected file name + size are shown with a `Remove` action; sizes are formatted (B / KB / MB). |
 | Finish | Validates that a file was chosen, then runs a short "uploading" state and reports success. |
@@ -45,9 +45,10 @@ Tokens were sampled from the rendered design rather than guessed:
 | --- | --- | --- |
 | Page background | `#F8FBF9` | behind both columns |
 | Card surface | `#FFFFFF` | upload card |
-| Primary blue | `#1B5AFF` | `Finish`, stepper nodes, active dot |
+| Primary blue | `#1B5AFF` | `Finish`, active / completed stepper nodes |
 | Secondary blue | `#75ACFF` | `Last step` |
-| Stepper rail | `#C9D8FF` | connector lines |
+| Stepper rail (done) | `#C9D8FF` | connector lines behind completed steps |
+| Stepper idle | `#E8EDF5` / `#DCE4F2` | pending nodes / pending rails |
 | Field fill | `#F3F8FF` | drop zone |
 | Field border | `#6E9BFF` | dashed border |
 | Muted text | `#98A2B3` | hint, lede |
@@ -62,7 +63,7 @@ snapping at a single breakpoint.
 ```text
 index.html     semantic markup: <main>, <section>, <h1>/<h2>, <button>, labelled file input
 styles.css     design tokens in :root, BEM-ish class names, responsive rules at the bottom
-app.js         ~130 lines: file dialog, drag & drop, name formatting, button states
+app.js         ~190 lines: file dialog, drag & drop, name formatting, stepper state machine
 assets/
   illustration.png   illustration cropped from the design render (see "Deviations")
 ```
@@ -79,8 +80,13 @@ assets/
    reproduced.
 3. **Fonts** — the file does not expose its font stack; the page uses an
    `Inter → Segoe UI → system-ui` stack that matches the design's metrics.
-4. **Stepper semantics** — the design shows steps 1–2 done and step 3 active;
-   the markup marks the third node with `aria-current="step"`.
+4. **Stepper semantics** — the design is a static frame that always shows
+   `✓ ✓ 3`; here the nodes follow the actual flow (see the state machine above)
+   and the current node carries `aria-current="step"`.
+5. **Carousel dots removed** — the design has three dots under the illustration,
+   implying a swipeable gallery, but the frame only contains one illustration, so
+   there is nothing to scroll to. The dots are dropped rather than left as dead
+   UI; reviving a carousel would mean adding slides plus the indicator markup.
 
 ## Accessibility notes
 

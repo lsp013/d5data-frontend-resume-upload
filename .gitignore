@@ -1,0 +1,7 @@
+# scratch material for building the page (Figma captures, comparison strips)
+_scratch/
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log

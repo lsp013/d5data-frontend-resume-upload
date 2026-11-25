@@ -1,0 +1,452 @@
+/* ==========================================================================
+   Upload Your Resume —design tokens taken from the Figma file
+   (https://www.figma.com/design/D0jjN7Twkq0DGm3ZJvQabz, node 0:1)
+   ========================================================================== */
+
+:root {
+  --bg: #f8fbf9;
+  --surface: #ffffff;
+  --ink: #101828;
+  --ink-muted: #98a2b3;
+  --blue: #1b5aff;
+  --blue-hover: #1249e0;
+  --blue-active: #0f3fc7;
+  --blue-soft: #75acff;
+  --blue-soft-hover: #649df7;
+  --blue-soft-active: #5590ef;
+  --blue-track: #c9d8ff;
+  --field-bg: #f3f8ff;
+  --field-bg-hover: #eaf2ff;
+  --field-bg-active: #e2edff;
+  --field-border: #6e9bff;
+  --radius-card: 24px;
+  --radius-field: 16px;
+  --radius-button: 10px;
+  --shadow-card: 0 20px 60px rgba(16, 24, 40, 0.08);
+  --font-sans: "Inter", "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --focus-ring: 0 0 0 3px rgba(27, 90, 255, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  min-height: 100vh;
+  padding: clamp(24px, 7vh, 96px) clamp(20px, 5vw, 80px)
+    clamp(24px, 6vh, 80px);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(420px, 1fr);
+  align-items: start;
+  gap: clamp(32px, 4.4vw, 76px);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Left column: heading, lede, illustration
+   -------------------------------------------------------------------------- */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.intro__title {
+  margin: 0;
+  font-size: clamp(22px, 2.1vw, 30px);
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.intro__title-line {
+  display: block;
+}
+
+.intro__title-line:last-child {
+  font-weight: 400;
+}
+
+.intro__lede {
+  margin: clamp(16px, 2.2vw, 26px) 0 0;
+  max-width: 30em;
+  font-size: clamp(13px, 1vw, 14px);
+  line-height: 1.65;
+  color: var(--ink-muted);
+}
+
+.intro__figure {
+  margin: clamp(24px, 4vw, 56px) 0 0;
+  overflow: hidden;
+}
+
+.intro__illustration {
+  display: block;
+  width: min(100%, 700px);
+  height: auto;
+  object-fit: contain;
+  object-position: left bottom;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  padding-left: 2px;
+}
+
+.dots__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c7ccd8;
+  transition: background-color 0.2s ease;
+}
+
+.dots__dot.is-active {
+  background: var(--blue);
+}
+
+/* --------------------------------------------------------------------------
+   Right column: upload card
+   -------------------------------------------------------------------------- */
+
+.upload-card {
+  padding: clamp(28px, 7%, 60px) clamp(24px, 12%, 96px)
+    clamp(32px, 8%, 64px);
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  min-width: 0;
+}
+
+.upload-card__title {
+  margin: 0;
+  font-size: clamp(22px, 2.2vw, 31px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+/* Dropzone ---------------------------------------------------------------- */
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.2vw, 16px);
+  width: 100%;
+  aspect-ratio: 1.63 / 1;
+  min-height: 180px;
+  margin-top: clamp(20px, 3.4%, 34px);
+  padding: clamp(18px, 2.4vw, 32px);
+  border: 2px dashed var(--field-border);
+  border-radius: var(--radius-field);
+  background: var(--field-bg);
+  color: var(--ink-muted);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.dropzone:hover {
+  background: var(--field-bg-hover);
+  border-color: var(--blue);
+}
+
+.dropzone:active {
+  background: var(--field-bg-active);
+}
+
+.dropzone:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-color: var(--blue);
+}
+
+.dropzone.is-dragover {
+  background: var(--field-bg-active);
+  border-color: var(--blue);
+  border-style: solid;
+}
+
+.dropzone__icon {
+  width: clamp(40px, 3.4vw, 50px);
+  height: auto;
+  color: #1849d6;
+}
+
+.dropzone__hint {
+  display: block;
+  max-width: 56ch;
+  font-size: clamp(12px, 0.95vw, 13.5px);
+  line-height: 1.7;
+}
+
+/* Selected file ----------------------------------------------------------- */
+
+.file-status {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--field-bg);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.file-status.is-visible {
+  display: flex;
+}
+
+.file-status__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-status__clear {
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--blue);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.file-status__clear:hover {
+  text-decoration: underline;
+}
+
+.file-status__clear:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 4px;
+}
+
+/* Actions ----------------------------------------------------------------- */
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: clamp(16px, 3%, 26px);
+  margin-top: clamp(24px, 5.2%, 38px);
+}
+
+.btn {
+  flex: 0 1 auto;
+  min-width: clamp(132px, 26%, 200px);
+  height: clamp(44px, 3.3vw, 52px);
+  padding-inline: clamp(20px, 2.6vw, 36px);
+  border: 0;
+  border-radius: var(--radius-button);
+  color: #fff;
+  font: inherit;
+  font-size: clamp(14px, 1.05vw, 16px);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.16s ease, transform 0.06s ease;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--secondary {
+  background: var(--blue-soft);
+}
+
+.btn--secondary:hover {
+  background: var(--blue-soft-hover);
+}
+
+.btn--secondary:active {
+  background: var(--blue-soft-active);
+}
+
+.btn--primary {
+  background: var(--blue);
+}
+
+.btn--primary:hover {
+  background: var(--blue-hover);
+}
+
+.btn--primary:active {
+  background: var(--blue-active);
+}
+
+.btn[disabled] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.actions__note {
+  min-height: 20px;
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+.actions__note.is-error {
+  color: #d92d20;
+}
+
+.actions__note.is-success {
+  color: #067647;
+}
+
+/* Stepper ----------------------------------------------------------------- */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: clamp(24px, 5.4%, 40px);
+}
+
+.stepper__step {
+  display: grid;
+  place-items: center;
+  width: clamp(22px, 2.6vw, 26px);
+  height: clamp(22px, 2.6vw, 26px);
+  flex: none;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: clamp(10px, 0.85vw, 12px);
+  font-weight: 600;
+}
+
+.stepper__step svg {
+  width: 60%;
+  height: 60%;
+}
+
+.stepper__rail,
+.stepper__tail {
+  height: 2px;
+  background: var(--blue-track);
+}
+
+.stepper__rail {
+  flex: 0 1 clamp(44px, 4.4vw, 70px);
+  width: clamp(44px, 4.4vw, 70px);
+}
+
+.stepper__tail {
+  width: clamp(28px, 3vw, 44px);
+  flex: none;
+}
+
+.stepper__tail--end {
+  width: clamp(24px, 2.6vw, 38px);
+}
+
+/* Utilities --------------------------------------------------------------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive: side-by-side above 960px, stacked below
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 4vw, 40px);
+  }
+
+  .intro {
+    align-items: flex-start;
+  }
+
+  .intro__lede {
+    max-width: 46ch;
+  }
+
+  .intro__figure {
+    order: 3;
+    margin-top: clamp(18px, 4vw, 28px);
+  }
+
+  .intro__illustration {
+    width: min(100%, 460px);
+    max-height: 260px;
+  }
+
+  .upload-card {
+    order: 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .dropzone {
+    min-height: 190px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

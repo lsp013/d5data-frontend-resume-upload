@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Upload Your Resume</title>
+    <meta
+      name="description"
+      content="Resume upload step of the career platform: drag a file into the upload area or pick it from your device."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="layout">
+        <section class="intro" aria-labelledby="intro-title">
+          <h1 class="intro__title" id="intro-title">
+            <span class="intro__title-line">Finish!</span>
+            <span class="intro__title-line">Upload Your Resume</span>
+          </h1>
+          <p class="intro__lede">
+            Upload your resume, the platform will help you parse and optimize,
+            you can also skip this step
+          </p>
+
+          <figure class="intro__figure">
+            <img
+              class="intro__illustration"
+              src="assets/illustration.png"
+              alt="Illustration of a blue cat chatting next to a phone"
+              width="1100"
+              height="726"
+              decoding="async"
+            />
+          </figure>
+
+          <div class="dots" role="img" aria-label="Illustration 1 of 3">
+            <span class="dots__dot is-active"></span>
+            <span class="dots__dot"></span>
+            <span class="dots__dot"></span>
+          </div>
+        </section>
+
+        <section class="upload-card" aria-labelledby="upload-title">
+          <h2 class="upload-card__title" id="upload-title">Upload file</h2>
+
+          <button
+            class="dropzone"
+            type="button"
+            id="dropzone"
+            aria-describedby="dropzone-hint"
+          >
+            <svg
+              class="dropzone__icon"
+              viewBox="0 0 48 48"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M13.2 37.2h21.6a8 8 0 0 0 1.1-15.9 13.3 13.3 0 0 0-25.6-1A8.6 8.6 0 0 0 13.2 37.2Z"
+              />
+              <path d="M24 30.4V18.4" />
+              <path d="m18.6 23.6 5.4-5.4 5.4 5.4" />
+            </svg>
+            <span class="dropzone__hint" id="dropzone-hint">
+              Drag your resume file to this area, or click on the area to select
+              the appropriate file to upload
+            </span>
+          </button>
+
+          <input
+            class="visually-hidden"
+            type="file"
+            id="resume-input"
+            accept=".pdf,.doc,.docx,.txt,.rtf"
+          />
+
+          <p class="file-status" id="file-status" role="status" aria-live="polite">
+            <span class="file-status__name" id="file-name"></span>
+            <button class="file-status__clear" type="button" id="file-clear">
+              Remove
+            </button>
+          </p>
+
+          <div class="actions">
+            <button class="btn btn--secondary" type="button" id="last-step">
+              Last step
+            </button>
+            <button class="btn btn--primary" type="button" id="finish">
+              Finish
+            </button>
+          </div>
+
+          <p class="actions__note" id="actions-note" role="status" aria-live="polite"></p>
+
+          <div class="stepper" role="group" aria-label="Progress: step 3 of 3">
+            <span class="stepper__tail" aria-hidden="true"></span>
+            <span class="stepper__step is-done">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="m6.5 12.5 3.6 3.6 7.4-7.6"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="stepper__rail" aria-hidden="true"></span>
+            <span class="stepper__step is-done">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="m6.5 12.5 3.6 3.6 7.4-7.6"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span class="stepper__rail" aria-hidden="true"></span>
+            <span class="stepper__step is-current" aria-current="step">3</span>
+            <span class="stepper__tail stepper__tail--end" aria-hidden="true"></span>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
